@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/ros_framework.dir/src/main.cpp.o CMakeFiles/ros_framework.dir/src/publisher.cpp.o CMakeFiles/ros_framework.dir/src/subscriber.cpp.o CMakeFiles/ros_framework.dir/src/message.cpp.o  -o ros_framework 

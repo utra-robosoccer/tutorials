@@ -13,7 +13,8 @@
 
 int main() {
     // Complete the exercises first, do all the ones you are not sure about. All of the exercises will be helpful for this project
-
+    e6();
+    return 0;
     // Final Project This is quite an advanced exercise, it should take about 8-16 hours depending on skill level. Work until you give up and discuss with partners
 
     // 1. Add a template T to the Message Class specifying the type of message you want the publisher and subscriber to transmit.

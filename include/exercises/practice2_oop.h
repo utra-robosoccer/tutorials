@@ -7,43 +7,96 @@
 // Classes can be declared anywhere, inside functions, inside classes, and inside classes inside function inside classes
 // There is no difference between a struct and a class. The only difference is public vs private variables
 class C1 {
-    struct C2 {
-        class C3 {
-            int i;
-            void print_i() { std::cout << i << std::endl; }
-        };
-    };
-    std::string zed = "zed";
-    static void print_type() { std::cout << "C1" << std::endl; }
-    void print_zed() { std::cout << zed << std::endl; }
+    int a;
+    char c;
+public:
+    C1(int a) : a(a) {}
+    C1() = default;
+    ~C1() = default;
+
+    // Constructor
+    C1(int a_in, char c_in)
+    : a(a_in), c(c_in) {
+        std::cout << c_in << std::endl;
+    }
+
+    // Getters and Setters
+    int getA() const {
+        return a;
+    }
+
+    void setA(int a) {
+        C1::a = a;
+    }
+
+    // Comparison operators
+    bool operator<(const C1 &rhs) const {
+        return a < rhs.a;
+    }
+
+    bool operator>(const C1 &rhs) const {
+        return rhs < *this;
+    }
+
+    bool operator<=(const C1 &rhs) const {
+        return !(rhs < *this);
+    }
+
+    bool operator>=(const C1 &rhs) const {
+        return !(*this < rhs);
+    }
 };
 
 // Constructors, getters, setters and comparisons
 inline void e6() {
-    C1 c1;
+    C1 c1(3, 'c');
+
     // Create a constructor in the class C1 that initializes the integer i. So that the constructor is C1(c) will set the int i to c;
     // Remember that constructors and destructors need to be public
 
     // Implement the get function C1.get_i(i);
-
+    std::cout << c1.getA() << std::endl;
     // Implement the set function C1.set_i(i);
+    c1.setA(4);
+    std::cout << c1.getA() << std::endl;
 
-    // Create a comparison function so that C1 a > C1 b if C1.C2.C3.i > C1.C2.C3.i
+
+    // Create a comparison function
+    C1 c2(5, 'f');
+
+    if (c1 < c2) {
+        std::cout << "c1's a is smaller than c2's a" << std::endl;
+    } else {
+        std::cout << "c1's a is greater than c2's a" << std::endl;
+    }
+
 }
 
 // Implicit construction and default destruction
 inline void e7() {
-    C1 c1;
+//    C1 c1;
     // Implicit construction. If you have created a constructor with a single argument, you automatically have an implicit construction ability
     // Create a vector of C1 and insert the number 0 into the vector. You will automatically create an object of type C1
     // To disable this ability of implicit construction using c++, simply use the explicit keyword before the constructor to prevent this from happening
+    C1 c1 = 3;
+    std::cout << c1.getA() << std::endl;
 
     // Default destruction: If you use a default destructor it will automatically clean up all non-pointer types. Implement a default destructor in the class C1
+
 }
+
+// C0 is a type of C1
+class C0 : public C1 {
+private:
+
+    int k = 3;
+};
 
 // Inheritance
 inline void e8() {
     // Create a class C0 inside this function that inherits from C1. This class will have a constructor with zero arguments and initialize the value i to 7
+    C0 c0;
+    c0.getA(); // originally was in C1, is now also in C0 because C0 is a type of C1;
 
     // Print out this class C0 c0; c0.print_i();
 
